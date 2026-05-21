@@ -1,0 +1,528 @@
+.notes-page {
+  padding: 24px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.notes-header {
+  margin-bottom: 20px;
+  animation: fadeInUp 0.4s ease;
+}
+
+.notes-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  border: 1px solid var(--border-light);
+  animation: fadeInUp 0.4s ease 0.05s backwards;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 16px;
+  text-align: center;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  letter-spacing: -0.01em;
+}
+
+.tab:hover {
+  color: var(--text-secondary);
+  background: var(--surface-hover);
+}
+
+.tab.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+.notes-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.4s ease 0.1s backwards;
+}
+
+.notes-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
+  padding: 3px;
+}
+
+.view-toggle button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.view-toggle button.active {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  animation: fadeInUp 0.4s ease 0.15s backwards;
+}
+
+.note-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all var(--transition);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.3s ease backwards;
+}
+
+.note-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.note-card:hover {
+  border-color: var(--border);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.note-card:hover::before {
+  opacity: 1;
+}
+
+.note-card .note-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.note-card .note-preview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+}
+
+.note-card .note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+
+.note-card .note-date {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.note-card .note-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.note-card:hover .note-actions {
+  opacity: 1;
+}
+
+.note-card .note-actions button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.note-card .note-actions button:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.note-card .note-actions button.delete:hover {
+  background: var(--danger-subtle);
+  color: var(--danger);
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-list .note-card {
+  flex-direction: row;
+  min-height: auto;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.notes-list .note-card .note-title {
+  margin-bottom: 0;
+  margin-right: 12px;
+  flex: 0 0 140px;
+}
+
+.notes-list .note-card .note-preview {
+  -webkit-line-clamp: 1;
+  flex: 1;
+}
+
+.notes-list .note-card .note-footer {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  margin-left: 16px;
+  flex: 0 0 auto;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeInUp 0.4s ease 0.15s backwards;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+  animation: slideInRight 0.3s ease backwards;
+}
+
+.todo-item:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+}
+
+.todo-item.completed .todo-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.todo-item .checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  flex-shrink: 0;
+}
+
+.todo-item .checkbox:hover {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.todo-item .checkbox.checked {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  animation: bounce 0.4s ease;
+}
+
+.todo-item .todo-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-item .todo-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.todo-item .todo-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.todo-item .todo-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.todo-item:hover .todo-actions {
+  opacity: 1;
+}
+
+.todo-item .todo-actions button {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.todo-item .todo-actions button:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.todo-item .todo-actions button.delete:hover {
+  background: var(--danger-subtle);
+  color: var(--danger);
+}
+
+.reminder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeInUp 0.4s ease 0.15s backwards;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+  animation: slideInRight 0.3s ease backwards;
+}
+
+.reminder-item:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.reminder-item .reminder-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.reminder-item:not(.disabled) .reminder-icon {
+  background: var(--accent);
+  color: #fff;
+}
+
+.reminder-item.disabled {
+  opacity: 0.5;
+}
+
+.reminder-item .reminder-content {
+  flex: 1;
+}
+
+.reminder-item .reminder-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.reminder-item .reminder-time {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.reminder-item .toggle {
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+
+.reminder-item .toggle.active {
+  background: var(--accent);
+}
+
+.reminder-item .toggle::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition-spring);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.reminder-item .toggle.active::after {
+  transform: translateX(22px);
+}
+
+.editor-modal-content {
+  padding: 4px;
+}
+
+.editor-modal-content label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.editor-modal-content input,
+.editor-modal-content textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  margin-bottom: 16px;
+  font-size: 14px;
+  transition: all var(--transition-fast);
+}
+
+.editor-modal-content input:focus,
+.editor-modal-content textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+.editor-modal-content textarea {
+  min-height: 160px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.editor-modal-content select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  margin-bottom: 16px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.editor-modal-content select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+.filter-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.filter-modal-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .notes-page {
+    padding: 32px;
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .todo-item .todo-actions,
+  .note-card .note-actions {
+    opacity: 1;
+  }
+}
